@@ -1,8 +1,9 @@
-import renderToDom from './renderToDom';
+// import renderToDom from './renderToDom';
+import renderHomePage from '../pages/renderHomePage';
 
 const startApp = () => {
   console.warn('App Started! Lets get it on!');
-  renderToDom('#app', 'We are logged in!');
+  renderHomePage();
 };
 
 export default startApp;
