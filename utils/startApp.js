@@ -3,8 +3,8 @@
 import renderHomePage from '../pages/renderHomePage';
 import addEvents from './domEvents';
 
-const startApp = () => {
-  console.warn('App Started! Lets get it on!');
+const startApp = (user) => {
+  console.warn(user.uid);
   renderHomePage();
   addEvents();
 };
