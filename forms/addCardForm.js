@@ -1,4 +1,5 @@
 const addCardForm = () => {
+  document.querySelector('#cardsSection').innerHTML = '';
   document.querySelector('#app').innerHTML = `
   <ul class="nav justify-content-center">
   <li class="nav-item">

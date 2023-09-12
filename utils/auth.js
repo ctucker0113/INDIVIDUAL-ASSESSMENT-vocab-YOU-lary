@@ -8,6 +8,7 @@ const signIn = () => {
 };
 
 const signOut = () => {
+  console.warn('Sign Out Initiated!');
   firebase.auth().signOut();
   renderToDom('#app', '');
 };
