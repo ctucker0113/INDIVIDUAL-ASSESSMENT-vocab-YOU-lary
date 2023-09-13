@@ -14,6 +14,15 @@ const addCardForm = () => {
 </ul>
 <input class="form-control form-control-lg" id="userVocabInput" type="text" placeholder="Vocab Word" aria-label=".form-control-lg example">
 <input class="form-control" id="userDefinitionInput" type="text" placeholder="Definition" aria-label="default input example">
+<div class="form-group">
+        <label for="language">Select a Language</label>
+    <select class="form-control" id="userLanguageInput" required>
+    <option value="">Select a Category</option>" required>
+    <option value="English">English</option>
+    <option value="Spanish">Spanish</option>
+    <option value="Other">Other</option>
+    </select>
+        </div>
 <button type="button" class="btn btn-danger" id='submitCardBtn'>Submit</button>`;
 };
 
