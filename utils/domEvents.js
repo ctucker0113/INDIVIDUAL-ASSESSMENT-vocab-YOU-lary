@@ -2,14 +2,19 @@ import { signOut } from './auth';
 import addCardForm from '../forms/addCardForm';
 import renderHomePage from '../pages/renderHomePage';
 import {
-  showCards, getCards, deleteCards, emptyCards
+  showCards,
+  getCards,
+  deleteCards,
+  emptyCards,
+  createCard,
+  updateCard,
 } from '../pages/cards';
 
 const addEvents = (user) => {
   document.querySelector('#app').addEventListener('click', (e) => {
     if (e.target.id.includes('homeBtn')) {
       renderHomePage();
-      showCards();
+      getCards(user.uid).then(showCards);
     }
     if (e.target.id.includes('addCardBtn')) {
       addCardForm();
@@ -18,10 +23,24 @@ const addEvents = (user) => {
       signOut();
     }
     if (e.target.id.includes('submitCardBtn')) {
-      console.warn('Submit Button Clicked!');
-      const vocabWord = document.querySelector('#userVocabInput').value;
-      const definition = document.querySelector('#userDefinitionInput').value;
-      console.warn(`Vocab Word: ${vocabWord} definition: ${definition}`);
+      // console.warn('Submit Button Clicked!');
+      const timeStamp = new Date().toLocaleString();
+      const payload = {
+        vocabWord: document.querySelector('#userVocabInput').value,
+        definition: document.querySelector('#userDefinitionInput').value,
+        language: document.querySelector('#userLanguageInput').value,
+        timeSubmitted: timeStamp,
+        uid: user.uid,
+      };
+
+      createCard(payload).then(({ name }) => {
+        const patchPayload = { firebaseKey: name };
+        updateCard(patchPayload).then(() => {
+          getCards(user.uid).then(showCards);
+        });
+      });
+      document.querySelector('#app').innerHTML = '';
+      renderHomePage();
     }
   });
 

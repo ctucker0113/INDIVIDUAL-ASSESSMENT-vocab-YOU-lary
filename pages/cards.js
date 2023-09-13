@@ -63,6 +63,31 @@ const deleteCards = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const createCard = (payload) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/cardsData.json`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  }).then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+const updateCard = (payload) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/cardsData/${payload.firebaseKey}.json`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
 export {
-  showCards, getCards, emptyCards, deleteCards
+  showCards, getCards, emptyCards, deleteCards, createCard, updateCard
 };
