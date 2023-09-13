@@ -34,7 +34,8 @@ const addEvents = (user) => {
       };
 
       createCard(payload).then(({ name }) => {
-        const patchPayload = { firebaseKey: name };
+        const patchPayload = { firebasekey: name };
+        console.warn(`The firebasekey is ${name}`);
         updateCard(patchPayload).then(() => {
           getCards(user.uid).then(showCards);
         });
@@ -46,9 +47,9 @@ const addEvents = (user) => {
 
   document.querySelector('#cardsSection').addEventListener('click', (e) => {
     if (e.target.id.includes('delete-card-btn')) {
-      const [, firebaseKey] = e.target.id.split('--');
-      console.warn(firebaseKey);
-      deleteCards(firebaseKey).then(() => {
+      const [, firebasekey] = e.target.id.split('--');
+      console.warn(firebasekey);
+      deleteCards(firebasekey).then(() => {
         getCards(user.uid).then((array) => {
           if (array.length) {
             showCards(array);
@@ -60,8 +61,8 @@ const addEvents = (user) => {
     }
 
     if (e.target.id.includes('edit-card-btn')) {
-      const [, firebaseKey] = e.target.id.split('--');
-      console.warn(firebaseKey);
+      const [, firebasekey] = e.target.id.split('--');
+      console.warn(firebasekey);
     }
   });
 };

@@ -76,7 +76,7 @@ const createCard = (payload) => new Promise((resolve, reject) => {
 });
 
 const updateCard = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/cardsData/${payload.firebaseKey}.json`, {
+  fetch(`${endpoint}/cardsData/${payload.firebasekey}.json`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
