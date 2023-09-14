@@ -88,6 +88,24 @@ const updateCard = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getSingleCard = (firebasekey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/cardsData/${firebasekey}.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data)) // will resolve a single object
+    .catch(reject);
+});
+
 export {
-  showCards, getCards, emptyCards, deleteCards, createCard, updateCard
+  showCards,
+  getCards,
+  emptyCards,
+  deleteCards,
+  createCard,
+  updateCard,
+  getSingleCard
 };
