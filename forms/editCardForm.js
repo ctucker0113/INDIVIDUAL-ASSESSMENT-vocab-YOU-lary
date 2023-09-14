@@ -23,7 +23,7 @@ const editCardForm = (uid, obj = {}) => {
       <option value="Other">Other</option>
       </select>
           </div>
-  <button type="button" class="btn btn-danger" id='submitEditBtn'>Update</button>`;
+  <button type="button" class="btn btn-danger" id='submitEditBtn--${obj.firebasekey}'>Update</button>`;
 };
 
 export default editCardForm;

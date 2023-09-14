@@ -76,7 +76,7 @@ const createCard = (payload) => new Promise((resolve, reject) => {
 });
 
 const updateCard = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/cardsData/${payload.firebaseKey}.json`, {
+  fetch(`${endpoint}/cardsData/${payload.firebasekey}.json`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -100,6 +100,17 @@ const getSingleCard = (firebasekey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const searchCards = (searchValue, uid) => new Promise((resolve, reject) => {
+  getCards(uid).then((cardsArray) => {
+    const searchResults = cardsArray.filter((card) => (
+      card.vocabWord.toLowerCase().includes(searchValue)
+    || card.definition.toLowerCase().includes(searchValue)
+    ));
+
+    resolve(searchResults);
+  }).catch(reject);
+});
+
 export {
   showCards,
   getCards,
@@ -107,5 +118,6 @@ export {
   deleteCards,
   createCard,
   updateCard,
-  getSingleCard
+  getSingleCard,
+  searchCards
 };
